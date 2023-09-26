@@ -19,7 +19,7 @@ yarn add react-native-spk-dropdown
 
 ## With simple usage
 
-![Simple Ticket](https://drive.google.com/file/d/15mY0RW3xLQb_feE-gfMAuIl-HY-goiyh/preview)
+![Simple Ticket](./assets/simpleGif.gif)
 
 
 ### Simple Data
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
 
 ## With more personalized items
 
-![Avatar Ticket](https://drive.google.com/file/d/1XyKS-i-wNMhx2tcU6N85UdohSZcIXtZJ/preview)
+![Avatar Ticket](./assets/avatarGif.gif)
 
 
 ### Data
