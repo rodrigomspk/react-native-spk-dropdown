@@ -1,0 +1,25 @@
+{
+  "name": "react-native-spk-dropdown",
+  "version": "1.0.2",
+  "description": "The element is a DropDown component that is displayed on top of any content attached to the element, without moving the other elements of the graphical interface.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dropdown",
+    "react",
+    "native",
+    "modal",
+    "selector",
+    "box"
+  ],
+  "author": "Rodrigo Manzano",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "18.2.0",
+    "react-native": "0.72.4",
+    "react-native-vector-icons": "^10.0.0"
+  },
+  "private": false
+}
