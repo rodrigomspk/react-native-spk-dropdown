@@ -124,10 +124,9 @@ import {
     StatusBar, 
     StyleSheet, 
     Text, 
-    TouchableOpacity, 
     View } 
 from 'react-native';
-import Dropdown from './screens/Dropdown';
+import Dropdown from 'react-native-spk-dropdown';
 
 
 export default function App() {

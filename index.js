@@ -1,6 +1,6 @@
 
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     View,
     TouchableOpacity,
@@ -54,15 +54,20 @@ const Dropdown = ({
 
     const [collapsible, setCollapsible] = useState(false);
     const [yPosition, setYPosition] = useState(0);
-    const [windowsSize, setWindowsSize] = useState(defaultItemHeight);
     const [dimensions, setDimensions] = useState({ window, screen });
+    const [windowsSize, setWindowsSize] = useState();
     const [listItemHeight, setListItemHeight] = useState();
     const [boxHeight, setBoxHeight] = useState();
 
+    //referencia de vista
+    const [itemView, setItemView] = useState(null);
 
     useEffect(() => {
         setListSize();
-    }, [data, listItemHeight]);
+        setTimeout(() => {
+            setListSize();
+        }, 2000);
+    }, [data, listItemHeight, boxHeight]);
 
     /**
      * The method allows you to indicate the height that the list will have,
@@ -72,8 +77,7 @@ const Dropdown = ({
     function setListSize() {
         if (data) {
             let size = (data).length
-            currentItemSize = (listItemHeight && listItem) ? listItemHeight : (itemListStyle?.height) ? itemListStyle.height : defaultItemHeight;
-
+            currentItemSize = (listItemHeight && listItem) ? listItemHeight : (itemListStyle?.height) ? Number(itemListStyle.height) : defaultItemHeight;
             var currentSize = currentItemSize * size;
             var maxSize = Number(dimensions.window.height) * 0.5;
 
@@ -106,6 +110,9 @@ const Dropdown = ({
     const setBoxDimensions = (layout) => {
         const { x, y, width, height } = layout;
         var itemHeight = Math.ceil(height);
+
+        console.log("entro a cambiar con height:", itemHeight);
+        setBoxHeight(Number(itemHeight));
         setBoxHeight(Number(itemHeight));
     }
 
@@ -113,33 +120,44 @@ const Dropdown = ({
         (data)
             ?
             <View style={{ width: '100%', alignItems: 'center' }}>
-                <View
-                    onTouchStart={(e) => {
-                        if (collapsible == false) {
+                <View onTouchStart={(e) => {
+                    if (collapsible == false) {
+                        /* Calculate the display position of the list */
+                        let position = Math.round(e.nativeEvent.pageY);
+                        console.log(position);
+                        console.log("boxHeight", boxHeight)
 
-                            /* Calculate the display position of the list */
-                            let position = Math.round(e.nativeEvent.pageY)
-                            let addSize = position + windowsSize;
-                            let reduceSize = position - windowsSize;
+                        var margin = (boxHeight) ? Number(boxHeight) / 2 : (boxTextStyle?.height) ? Number(boxTextStyle.height) : Number(defaultBoxHeight) / 2;
 
-                            if (addSize > dimensions.window.height) {
-                                if (reduceSize < 0) {
-                                    setListSize();
-                                    setYPosition(dimensions.window.height / 2)
-                                } else {
-                                    setYPosition(reduceSize)
-                                }
+                        console.log("boxHeight: ", boxHeight);
+                        console.log("boxTextStyle: ", boxTextStyle);
+                        console.log("defaultBoxHeight: ", defaultBoxHeight);
+                        console.log("margin: ", margin);
 
+                        let below = position + margin + windowsSize; //abajo
+                        let above = position - margin - windowsSize; //arriba
+
+                        console.log("position: ", position);
+                        console.log("windowsSize: ", windowsSize);
+                        console.log("above:", above);
+
+                        if (below > dimensions.window.height) {
+                            setYPosition(above);
+                            if (above < 0) {
+                                setYPosition(0);
                             } else {
-                                setYPosition(position)
+                                setYPosition(above)
                             }
-
+                        } else {
+                            setYPosition(position + margin)
                         }
-                    }}
+
+                    }
+                }}
                     style={{ width: '100%' }}>
 
                     {/* Render the element selection box */}
-                    {(itemBoxSelected)
+                    {(itemBoxSelected && selectedItem)
                         ?
                         <View style={
                             (boxStyle)
@@ -163,15 +181,17 @@ const Dropdown = ({
                                         {itemBoxSelected(selectedItem)}
                                     </View>
                                     :
-                                    <TextInput
-                                        multiline={false}
-                                        selection={{ start: 0 }}
-                                        placeholderTextColor={selectedDropDown}
-                                        placeholder={(placeholder) ? placeholder : ''}
-                                        editable={false}
-                                        value={''}
-                                        style={(boxTextStyle) ? [styles.defaultBoxTextStyle, { ...boxTextStyle }] : [styles.defaultBoxTextStyle]}
-                                    />
+                                    <View>
+                                        <TextInput
+                                            multiline={false}
+                                            selection={{ start: 0 }}
+                                            placeholderTextColor={selectedDropDown}
+                                            placeholder={(placeholder) ? placeholder : ''}
+                                            editable={false}
+                                            value={''}
+                                            style={(boxTextStyle) ? [styles.defaultBoxTextStyle, { ...boxTextStyle }] : [styles.defaultBoxTextStyle]}
+                                        />
+                                    </View>
                                 }
                             </View>
                             <TouchableOpacity
@@ -220,6 +240,7 @@ const Dropdown = ({
                             </TouchableOpacity>
                         </View>
                     }
+
 
                     {/* Renders the label and error message*/}
                     {(label)
@@ -309,7 +330,6 @@ const Dropdown = ({
                                 {(data.length > 0)
                                     &&
                                     <View style={(listContainerStyle) ? [styles.defaultListContainerStyle, { ...listContainerStyle }, { height: windowsSize }] : [styles.defaultListContainerStyle, { height: windowsSize }]}>
-
                                         {(listItem)
                                             ?
                                             < FlatList
@@ -328,7 +348,9 @@ const Dropdown = ({
                                                         >
                                                             <View style={(itemListStyle) ? [styles.defaultItemStyle, { ...itemListStyle }] : styles.defaultItemStyle}>
 
-                                                                <View onLayout={(event) => { setItemListDimensions(event.nativeEvent.layout) }} style={{ flex: 1 }}>
+                                                                <View
+                                                                    ref={(itemView) => { setItemView(itemView) }}
+                                                                    onLayout={(event) => { setItemListDimensions(event.nativeEvent.layout) }} style={{ flex: 1 }}>
                                                                     {listItem(item)}
                                                                 </View>
 
@@ -425,7 +447,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10
     },
     defaultListContainerStyle: {
-        marginTop: 30,
         backgroundColor: '#fff',
         borderColor: lightgrey,
         borderWidth: 0.5,
