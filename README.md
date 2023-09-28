@@ -17,7 +17,7 @@ yarn add react-native-spk-dropdown
 
 
 
-## With simple usage
+## Simple Dropdown Component
 
 ![Simple Ticket](./assets/simpleGif.gif)
 
@@ -41,7 +41,7 @@ const data = [
 ];
 ```
 
-### Simple use
+### Simple Usage
 
 ```javascript
 import React, { useState } from 'react';
@@ -77,12 +77,12 @@ const styles = StyleSheet.create({
 });
 ```
 
-## With more personalized items
+## Custom Dropdown Component
 
 ![Avatar Ticket](./assets/avatarGif.gif)
 
 
-### Data
+### Users Data
 
 ```javascript
 const dataUsers = [
@@ -113,7 +113,7 @@ const dataUsers = [
 ];
 ```
 
-### Usage
+### Custom Usage
 
 ```javascript
 

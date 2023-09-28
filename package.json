@@ -1,6 +1,6 @@
 {
   "name": "react-native-spk-dropdown",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "The element is a DropDown component that is displayed on top of any content attached to the element, without moving the other elements of the graphical interface.",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,10 @@
   ],
   "author": "Rodrigo Manzano",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rodrigomspk/react-native-spk-dropdown.git"
+  },
   "peerDependencies": {
     "react": "18.2.0",
     "react-native": "0.72.4",
