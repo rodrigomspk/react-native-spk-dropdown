@@ -111,7 +111,6 @@ const Dropdown = ({
         const { x, y, width, height } = layout;
         var itemHeight = Math.ceil(height);
 
-        console.log("entro a cambiar con height:", itemHeight);
         setBoxHeight(Number(itemHeight));
         setBoxHeight(Number(itemHeight));
     }
@@ -124,22 +123,11 @@ const Dropdown = ({
                     if (collapsible == false) {
                         /* Calculate the display position of the list */
                         let position = Math.round(e.nativeEvent.pageY);
-                        console.log(position);
-                        console.log("boxHeight", boxHeight)
 
                         var margin = (boxHeight) ? Number(boxHeight) / 2 : (boxTextStyle?.height) ? Number(boxTextStyle.height) : Number(defaultBoxHeight) / 2;
 
-                        console.log("boxHeight: ", boxHeight);
-                        console.log("boxTextStyle: ", boxTextStyle);
-                        console.log("defaultBoxHeight: ", defaultBoxHeight);
-                        console.log("margin: ", margin);
-
                         let below = position + margin + windowsSize; //abajo
                         let above = position - margin - windowsSize; //arriba
-
-                        console.log("position: ", position);
-                        console.log("windowsSize: ", windowsSize);
-                        console.log("above:", above);
 
                         if (below > dimensions.window.height) {
                             setYPosition(above);
