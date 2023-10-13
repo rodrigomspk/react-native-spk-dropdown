@@ -19,7 +19,7 @@ yarn add react-native-spk-dropdown
 
 ## Simple Dropdown Component
 
-<div style="text-align:center"><img src="https://github.com/rodrigomspk/react-native-spk-dropdown/blob/main/assets/simpleGif.gif" alt="Avatar Ticket" height="500" style="border: 2px solid #000;"></div>
+<div style="text-align:center"><img src="https://github.com/rodrigomspk/react-native-spk-dropdown/blob/main/assets/simpleGif.gif" alt="Avatar Ticket" height="600" style="border: 2px solid #000;"></div>
 
 
 ### Simple Data
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
 
 ## Custom Dropdown Component
 
-<div style="text-align:center"><img src="https://github.com/rodrigomspk/react-native-spk-dropdown/blob/main/assets/avatarGif.gif" alt="Avatar Ticket" height="500" style="border: 2px solid #000;"></div>
+<div style="text-align:center"><img src="https://github.com/rodrigomspk/react-native-spk-dropdown/blob/main/assets/avatarGif.gif" alt="Avatar Ticket" height="600" style="border: 2px solid #000;"></div>
 
 
 
