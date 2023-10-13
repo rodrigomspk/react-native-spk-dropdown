@@ -4,7 +4,7 @@
 
 The element is a DropDown component that is displayed on top of any content attached to the element, without moving the other elements of the graphical interface.
 
-## Instalación
+## Installation
 
 To install use the following commands:
 ```bash
@@ -19,7 +19,7 @@ yarn add react-native-spk-dropdown
 
 ## Simple Dropdown Component
 
-![Simple Ticket](./assets/simpleGif.gif)
+<div style="text-align:center"><img src="https://github.com/rodrigomspk/react-native-spk-dropdown/blob/main/assets/simpleGif.gif" alt="Avatar Ticket" height="500" style="border: 2px solid #000;"></div>
 
 
 ### Simple Data
@@ -79,7 +79,8 @@ const styles = StyleSheet.create({
 
 ## Custom Dropdown Component
 
-![Avatar Ticket](./assets/avatarGif.gif)
+<div style="text-align:center"><img src="https://github.com/rodrigomspk/react-native-spk-dropdown/blob/main/assets/avatarGif.gif" alt="Avatar Ticket" height="500" style="border: 2px solid #000;"></div>
+
 
 
 ### Users Data

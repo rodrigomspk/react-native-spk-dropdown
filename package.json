@@ -1,6 +1,6 @@
 {
   "name": "react-native-spk-dropdown",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "The element is a DropDown component that is displayed on top of any content attached to the element, without moving the other elements of the graphical interface.",
   "main": "index.js",
   "scripts": {
